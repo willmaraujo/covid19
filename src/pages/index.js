@@ -1,10 +1,5 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import Helmet from 'react-helmet';
-import L from 'leaflet';
-import { Marker } from 'react-leaflet';
-
-import { promiseToFlyTo, getCurrentLocation } from 'lib/map';
-
 import Layout from 'components/Layout';
 import Container from 'components/Container';
 import Map from 'components/Map';
@@ -37,7 +32,6 @@ const popupContentGatsby = `
 `;
 
 const IndexPage = () => {
-  const markerRef = useRef();
 
   /**
    * mapEffect
@@ -45,33 +39,7 @@ const IndexPage = () => {
    * @example Here this is and example of being used to zoom in and set a popup on load
    */
 
-  async function mapEffect({ leafletElement } = {}) {
-    if ( !leafletElement ) return;
-
-    const popup = L.popup({
-      maxWidth: 800
-    });
-
-    const location = await getCurrentLocation().catch(() => LOCATION );
-
-    const { current = {} } = markerRef || {};
-    const { leafletElement: marker } = current;
-
-    marker.setLatLng( location );
-    popup.setLatLng( location );
-    popup.setContent( popupContentHello );
-
-    setTimeout( async () => {
-      await promiseToFlyTo( leafletElement, {
-        zoom: ZOOM,
-        center: location
-      });
-
-      marker.bindPopup( popup );
-
-      setTimeout(() => marker.openPopup(), timeToOpenPopupAfterZoom );
-      setTimeout(() => marker.setPopupContent( popupContentGatsby ), timeToUpdatePopupAfterZoom );
-    }, timeToZoom );
+  async function mapEffect({ leafletElement: map } = {}) {
   }
 
   const mapSettings = {
@@ -88,7 +56,6 @@ const IndexPage = () => {
       </Helmet>
 
       <Map {...mapSettings}>
-        <Marker ref={markerRef} position={CENTER} />
       </Map>
 
       <Container type="content" className="text-center home-start">
