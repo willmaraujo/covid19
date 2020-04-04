@@ -5,14 +5,12 @@ import Layout from 'components/Layout';
 import Map from 'components/Map';
 import L from 'leaflet';
 
-import gatsby_astronaut from 'assets/images/gatsby-astronaut.jpg';
-
 const LOCATION = {
   lat: 0,
   lng: 0
 };
 const CENTER = [LOCATION.lat, LOCATION.lng];
-const DEFAULT_ZOOM = 2;
+const DEFAULT_ZOOM = 3;
 
 const IndexPage = () => {
 
@@ -110,7 +108,7 @@ const IndexPage = () => {
 
   const mapSettings = {
     center: CENTER,
-    defaultBaseMap: 'OpenStreetMap',
+    defaultBaseMap: 'Mapbox',
     zoom: DEFAULT_ZOOM,
     mapEffect
   };
