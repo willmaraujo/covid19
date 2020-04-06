@@ -3,6 +3,6 @@ WORKDIR /app
 COPY . ./
 RUN yarn
 RUN yarn build
-EXPOSE 9000
+EXPOSE 9000 9001
 CMD ["./run.sh"]
-CMD ["yarn", "serve"]
+CMD ["yarn", "serve", "-p", "9000"]
