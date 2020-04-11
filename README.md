@@ -4,6 +4,8 @@ Uses https://github.com/ExpDev07/coronavirus-tracker-api
 
 Jumpstart your next Gatsby mapping project with Leaflet!
 
+Demo http://covid19.williamsaraujo.com/
+
 # Getting Started
 
 ## Requirements
